@@ -67,16 +67,28 @@ public class MainActivity extends AppCompatActivity {
         btninsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // get user input
                 String title = etmovietitle.getText().toString();
                 String genre = etgenre.getText().toString();
-                int year = Integer.parseInt(etyear.getText().toString());
+                String stryr = etyear.getText().toString().trim();
+                int year = Integer.valueOf(stryr);
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
-                long inserted_id = dbh.insertMovie(title, genre, year, rating);
 
-                if (inserted_id != -1){
-                    Toast.makeText(MainActivity.this, "Insert successful",
-                            Toast.LENGTH_SHORT).show();
+                if (title.length() == 0 || genre.length() == 0){
+                    Toast.makeText(MainActivity.this, "please fill in movie title and genre", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                long result = dbh.insertMovie(title, genre, year, rating);
+
+                if (result != -1) {
+                    Toast.makeText(MainActivity.this, "movie successfully inserted", Toast.LENGTH_LONG).show();
+                    etmovietitle.setText("");
+                    etgenre.setText("");
+                    etyear.setText("");
+                } else {
+                    Toast.makeText(MainActivity.this, "insertion failed", Toast.LENGTH_LONG).show();
                 }
             }
         });

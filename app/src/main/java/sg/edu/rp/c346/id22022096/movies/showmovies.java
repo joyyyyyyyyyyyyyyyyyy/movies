@@ -43,9 +43,10 @@ public class showmovies extends AppCompatActivity {
         al = new ArrayList<>();
         //lv.setAdapter();
 
-        DBHelper db = new DBHelper(showmovies.this);
-        al.clear();
-        al.addAll(db.getAllMovies());
+        //DBHelper db = new DBHelper(showmovies.this);
+        //al.clear();
+        //al.addAll(db.getAllMovies());
+        //camovies.notifyDataSetChanged();
 
         btnShowPG13.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,7 @@ public class showmovies extends AppCompatActivity {
 
                 String filterText = "PG13";
                 al.addAll(db.getPgMovies(filterText));
+                camovies.notifyDataSetChanged();
 
             }
         });
@@ -65,7 +67,7 @@ public class showmovies extends AppCompatActivity {
                 Movies target = al.get(position);
 
                 Intent intent = new Intent(showmovies.this, editmovie.class);
-                intent.putExtra("data", target);
+                intent.putExtra("Movies", target);
                 startActivity(intent);
             }
         });
