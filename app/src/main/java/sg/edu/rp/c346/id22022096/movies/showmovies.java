@@ -64,10 +64,10 @@ public class showmovies extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movies target = al.get(position);
+                Movies data = al.get(position);
 
                 Intent intent = new Intent(showmovies.this, editmovie.class);
-                intent.putExtra("Movies", target);
+                intent.putExtra("data", data);
                 startActivity(intent);
             }
         });

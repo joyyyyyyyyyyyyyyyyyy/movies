@@ -40,12 +40,12 @@ public class editmovie extends AppCompatActivity {
         tvRating = findViewById(R.id.tvRating);
 
         Intent intent = getIntent();
-        final Movies current = (Movies) intent.getSerializableExtra("Movies");
+        Movies data = (Movies) intent.getSerializableExtra("data");
 
-        tvID.setText(current.getId()+"");
-        etmovietitle.setText(current.getTitle());
-        etgenre.setText(current.getGenre());
-        etyear.setText(current.getYear());
+        tvID.setText(String.valueOf(data.getId()));
+        etmovietitle.setText(data.getTitle());
+        etgenre.setText(data.getGenre());
+        etyear.setText(String.valueOf(data.getYear()));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -83,11 +83,11 @@ public class editmovie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper db = new DBHelper(editmovie.this);
-                current.setTitle(etmovietitle.getText().toString());
-                current.setGenre(etgenre.getText().toString());
-                current.setYear(Integer.parseInt(etyear.getText().toString()));
-                current.setRating(rating);
-                int result = db.updateMovie(current);
+                data.setTitle(etmovietitle.getText().toString());
+                data.setGenre(etgenre.getText().toString());
+                data.setYear(Integer.parseInt(etyear.getText().toString()));
+                data.setRating(rating);
+                int result = db.updateMovie(data);
                 if (result>0){
                     Toast.makeText(editmovie.this, "movie has been updated", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent();
@@ -103,7 +103,7 @@ public class editmovie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DBHelper db = new DBHelper(editmovie.this);
-                int result = db.deleteMovie(current.getId());
+                int result = db.deleteMovie(data.getId());
                 if (result>0){
                     Toast.makeText(editmovie.this, "movie has been deleted", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent();

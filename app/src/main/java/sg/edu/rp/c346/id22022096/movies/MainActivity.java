@@ -71,7 +71,15 @@ public class MainActivity extends AppCompatActivity {
                 String title = etmovietitle.getText().toString();
                 String genre = etgenre.getText().toString();
                 String stryr = etyear.getText().toString().trim();
-                int year = Integer.valueOf(stryr);
+                //int year = Integer.valueOf(stryr);
+
+                int year;
+                try {
+                    year = Integer.parseInt(stryr);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "Invalid year format. Please enter a valid year.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 DBHelper dbh = new DBHelper(MainActivity.this);
 
