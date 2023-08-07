@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 switch(position){
                     case 0:
+
                         rating = "G";
                         break;
                     case 1:

@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="number"
         android:minHeight="48dp"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
@@ -84,7 +84,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
-        android:entries="@array/spinnerItems"
+        android:entries="@array/spinner"
         android:minHeight="48dp" />
 
     <LinearLayout
